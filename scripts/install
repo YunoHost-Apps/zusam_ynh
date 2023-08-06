@@ -47,6 +47,7 @@ cp -R $install_dir/app/dist/* $install_dir/public/
 ynh_script_progression --message="Pulling in external libraries with Composer..."
 
 pushd $install_dir/api
+    export COMPOSER_HOME=$install_dir/api
     /usr/bin/php$phpversion bin/composer install
 popd
 
