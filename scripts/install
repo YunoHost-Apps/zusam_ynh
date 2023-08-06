@@ -46,7 +46,9 @@ cp -R $install_dir/app/dist/* $install_dir/public/
 
 ynh_script_progression --message="Pulling in external libraries with Composer..."
 
-ynh_install_composer --workdir=$install_dir/api
+pushd $install_dir/api
+    /usr/bin/php$phpversion bin/composer install
+popd
 
 chown -R $app:www-data "$install_dir"
 
