@@ -28,15 +28,9 @@ ram.runtime = "50M"
 
 [install]
     [install.domain]
+    help.en = "Zusam can only be installed in a root domain or subdomain"
+    help.fr = "Zusam ne peut être installé que dans un domaine racine ou un sous-domaine"
     type = "domain"
-
-    [install.path]
-    type = "path"
-    default = "/zusam"
-
-    [install.init_main_permission]
-    type = "group"
-    default = "visitors"
 
     [install.language]
     ask.en = "Choose the application language"
@@ -45,13 +39,20 @@ ram.runtime = "50M"
     choices = ["fr", "en"]
     default = "fr"
 
-    [install.admin]
+    [install.first_user]
+    ask.en = "Choose the first user of Zusam"
+    ask.fr = "Choisissez le premier utilisateur de Zusam"
     type = "user"
 
-    [install.password]
-    help.en = "Use the help field to add an information for the admin about this question."
-    help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
+    [install.first_user_pass]
+    ask.en = "Choose a password for the first user"
+    ask.fr = "Choisissez le premier utilisateur"
     type = "password"
+
+    [install.first_group]
+    ask.en = "Choose the first group for the first user"
+    ask.fr = "Choisissez le premier groupe du premier utilisateur"
+    type = "string"
 
 [resources]
 
