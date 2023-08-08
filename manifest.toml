@@ -40,18 +40,20 @@ ram.runtime = "50M"
     default = "fr"
 
     [install.first_user]
-    ask.en = "Choose the first user of Zusam"
+    ask.en = "Choose the Zusam's first user"
     ask.fr = "Choisissez le premier utilisateur de Zusam"
     type = "user"
 
     [install.first_user_pass]
-    ask.en = "Choose a password for the first user"
-    ask.fr = "Choisissez le premier utilisateur"
+    help.en = "This password is only used for the Zusam app"
+    help.fr = "Ce mot de passe sera utilisé uniquement pour l'application Zusam"
+    ask.en = "Enter a password for Zusam's first user"
+    ask.fr = "Saisissez un mot de passe pour le premier utilisateur de Zusam"
     type = "password"
 
     [install.first_group]
-    ask.en = "Choose the first group for the first user"
-    ask.fr = "Choisissez le premier groupe du premier utilisateur"
+    ask.en = "Enter the name of the first group of the first user"
+    ask.fr = "Saississez le nom du  premier groupe du premier utilisateur"
     type = "string"
 
 [resources]

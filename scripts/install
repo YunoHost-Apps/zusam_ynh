@@ -126,7 +126,7 @@ ynh_add_nginx_config
 # DATABASE
 
 ynh_script_progression --message="Initialiazing the database..." --weight=1
-/usr/bin/php$phpversion $install_dir/api/bin/console zusam:init usermail@example.com my_group_name my_password
+/usr/bin/php$phpversion $install_dir/api/bin/console zusam:init $email $first_group $first_user_pass
 
 chown -R $app:www-data $install_dir
 
