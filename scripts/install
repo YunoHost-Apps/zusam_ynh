@@ -42,19 +42,12 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 # Download, check integrity, uncompress and patch the source
 ynh_setup_source --dest_dir="$install_dir"
 
-
 # Let's copy the webapp in the public directory
 cp -R $install_dir/app/dist/* $install_dir/public/
 
 ynh_script_progression --message="Pulling in external libraries with Composer..."
 
-#pushd $install_dir/api
-#    export COMPOSER_ALLOW_SUPERUSER=1
-#    export COMPOSER_HOME=$install_dir/api
-#    sudo -u $app /usr/bin/php$phpversion bin/composer install
-#popd
-
-    ynh_install_composer -c "2.4.2" -w $install_dir/api/
+ynh_install_composer -c "2.4.2" -w $install_dir/api/
 
 chown -R $app:www-data "$install_dir"
 
@@ -80,7 +73,8 @@ ynh_add_nginx_config
 #=================================================
 # ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_add_config --template="../conf/sample.env" --destination="$install_dir/api/.env"
+# We'll take care of language later
+# ynh_add_config --template="../conf/sample.env" --destination="$install_dir/api/.env"
 
 chmod 600 "$install_dir/api/.env"
 chown $app:www-data "$install_dir/api/.env"
@@ -90,7 +84,7 @@ chown $app:www-data "$install_dir/api/.env"
 #=================================================
 
 ynh_script_progression --message="Initialiazing the database..." --weight=1
-/usr/bin/php$phpversion $install_dir/api/bin/console zusam:init $email $first_group $first_user_pass
+/usr/bin/php$phpversion $install_dir/api/bin/console zusam:init $email "$first_group" $first_user_pass
 
 chown -R $app:www-data $install_dir
 
