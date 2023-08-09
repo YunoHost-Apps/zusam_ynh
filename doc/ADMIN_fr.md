@@ -1,3 +1,15 @@
-Ceci est une fausse doc d'admin pour cette app
+### Features
 
-Le dossier d'install de l'app est `__INSTALL_DIR__`
+- Prévisualisation des liens et contenu intégré (Youtube, Vimeo, Imgur, Soundcloud, Twitch, Bandcamp...)
+- Téléversement de vidéos et d'images
+- Albums photos
+- Génération de liens publics pour les messages
+- Design entièrement réactif (*responsive*) et adapté aux mobiles
+- Faible empreinte serveur
+
+### Status
+
+Le projet a pour objectif d'être vraiment stable au niveau du backend une fois la version 1.0 atteinte. Cela signifie qu'il n'y aura plus de changement dans la structure de la base de données, un système de mise à jour et une API stable.
+L'application web pourra encore changer beaucoup après cela.
+Pour l'instant, Zusam est tout à fait utilisable au quotidien mais pourra être sujet à des évolutions significatives avec les mises à jour à venir, sans garantie d'une rétrocompatibilité.
+

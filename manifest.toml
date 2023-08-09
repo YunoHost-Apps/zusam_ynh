@@ -14,7 +14,7 @@ license = "Unlicense"
 website = "https://zusam.org"
 demo = "https://demo.zusam.org"
 admindoc = "https://github.com/zusam/zusam/tree/master/documentation"
-code = "https://some.forge.com/example/example"
+code = "https://github.com/zusam/zusam"
 
 [integration]
 yunohost = ">= 11.1.21"
