@@ -48,10 +48,13 @@ cp -R $install_dir/app/dist/* $install_dir/public/
 
 ynh_script_progression --message="Pulling in external libraries with Composer..."
 
-pushd $install_dir/api
-    export COMPOSER_HOME=$install_dir/api
-    /usr/bin/php$phpversion bin/composer install
-popd
+#pushd $install_dir/api
+#    export COMPOSER_ALLOW_SUPERUSER=1
+#    export COMPOSER_HOME=$install_dir/api
+#    sudo -u $app /usr/bin/php$phpversion bin/composer install
+#popd
+
+    ynh_install_composer -c "2.4.2" -w $install_dir/api/
 
 chown -R $app:www-data "$install_dir"
 
