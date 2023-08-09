@@ -1,2 +1,2 @@
 # Run periodically to update your website
-*/10 * * * * __APP__ /usr/bin/php__PHPVERSION__ -f api/bin/console zusam:cron >> /srv/zusam/api/var/log/cron.log
+*/10 * * * * __APP__ /usr/bin/php__PHPVERSION__ -f api/bin/console zusam:cron >> __INSTALL_DIR__/api/var/log/cron.log
