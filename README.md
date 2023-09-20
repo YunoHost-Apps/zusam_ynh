@@ -20,17 +20,13 @@ Zusam (/tsuˈzam/) is a free and open-source way to self-host private forums for
 The goal is to make a stable, extensible, lightweight and user-friendly way to self-host private social groups.
 
 
-**Shipped version:** 0.5.3~ynh1
+**Shipped version:** 0.5.4~ynh1
 
 **Demo:** https://demo.zusam.org
 
 ## Screenshots
 
 ![Screenshot of Zusam](./doc/screenshots/screenshot.jpg)
-
-## :red_circle: Antifeatures
-
-- **Package not maintained**: This YunoHost package is not maintained and needs adoption.
 
 ## Documentation and resources
 

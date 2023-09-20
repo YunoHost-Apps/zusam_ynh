@@ -20,17 +20,13 @@ Zusam (/tsuˈzam/) est un moyen libre et gratuit d'auto-héberger des forums pri
 L'objectif est de disposer d'un outil stable, extensible, léger et convivial pour auto-héberger des groupes sociaux privés.
 
 
-**Version incluse :** 0.5.3~ynh1
+**Version incluse :** 0.5.4~ynh1
 
 **Démo :** https://demo.zusam.org
 
 ## Captures d’écran
 
 ![Capture d’écran de Zusam](./doc/screenshots/screenshot.jpg)
-
-## :red_circle: Fonctions indésirables
-
-- **Package not maintained**: This YunoHost package is not maintained and needs adoption.
 
 ## Documentations et ressources
 
