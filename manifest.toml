@@ -2,8 +2,8 @@ packaging_format = 2
 
 id = "zusam"
 name = "Zusam"
-description.en = "A truly private space for you and your friends"
-description.fr = "Un espace entièrement privé pour vous et vos amis"
+description.en = "Truly private space for you and your friends"
+description.fr = "Espace entièrement privé pour vous et vos amis"
 
 version = "0.5.3~ynh1"
 
@@ -17,7 +17,7 @@ admindoc = "https://github.com/zusam/zusam/tree/master/documentation"
 code = "https://github.com/zusam/zusam"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -80,4 +80,4 @@ ram.runtime = "50M"
     [resources.ports]
 
     [resources.apt]
-    packages = "unzip ffmpeg php8.1 php8.1-fpm php8.1-xml php8.1-curl php8.1-mbstring php8.1-sqlite3 php8.1-imagick php8.1-intl curl"
+    packages = "unzip, ffmpeg, php8.1-fpm, php8.1-xml, php8.1-curl, php8.1-mbstring, php8.1-sqlite3, php8.1-imagick, php8.1-intl, curl"
