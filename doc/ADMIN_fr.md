@@ -1,12 +1,3 @@
-### Features
-
-- Prévisualisation des liens et contenu intégré (Youtube, Vimeo, Imgur, Soundcloud, Twitch, Bandcamp...)
-- Téléversement de vidéos et d'images
-- Albums photos
-- Génération de liens publics pour les messages
-- Design entièrement réactif (*responsive*) et adapté aux mobiles
-- Faible empreinte serveur
-
 ### Status
 
 Le projet a pour objectif d'être vraiment stable au niveau du backend une fois la version 1.0 atteinte. Cela signifie qu'il n'y aura plus de changement dans la structure de la base de données, un système de mise à jour et une API stable.
