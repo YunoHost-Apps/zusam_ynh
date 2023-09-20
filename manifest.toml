@@ -2,10 +2,10 @@ packaging_format = 2
 
 id = "zusam"
 name = "Zusam"
-description.en = "A truly private space for you and your friends"
-description.fr = "Un espace entièrement privé pour vous et vos amis"
+description.en = "Truly private space for you and your friends"
+description.fr = "Espace entièrement privé pour vous et vos amis"
 
-version = "0.5.3~ynh1"
+version = "0.5.4~ynh1"
 
 maintainers = ["Papa Dragon"]
 
@@ -17,7 +17,7 @@ admindoc = "https://github.com/zusam/zusam/tree/master/documentation"
 code = "https://github.com/zusam/zusam"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -62,8 +62,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/zusam/zusam/archive/refs/tags/0.5.3.tar.gz"
-        sha256 = "3d0add0993ac209f73be392a7735055f51b783cc7856285216f80c3e0e7db93d"
+        url = "https://github.com/zusam/zusam/archive/refs/tags/0.5.4.tar.gz"
+        sha256 = "772c3b218c2ac259ce581a2c19e0d41ac9b42ecb3503ae5e703f4513404e9aef"
 
         autoupdate.strategy = "latest_github_release"
 
@@ -80,4 +80,4 @@ ram.runtime = "50M"
     [resources.ports]
 
     [resources.apt]
-    packages = "unzip ffmpeg php8.1 php8.1-fpm php8.1-xml php8.1-curl php8.1-mbstring php8.1-sqlite3 php8.1-imagick php8.1-intl curl"
+    packages = "unzip, ffmpeg, php8.1-fpm, php8.1-xml, php8.1-curl, php8.1-mbstring, php8.1-sqlite3, php8.1-imagick, php8.1-intl, curl"
