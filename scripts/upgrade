@@ -47,7 +47,7 @@ pushd $install_dir
     php$phpversion api/bin/console zusam:migration
 
     ynh_script_progression --message="Pulling in external libraries with Composer..."
-    ynh_install_composer 
+    ynh_install_composer -w $install_dir/api/
   cp app/dist/* public/
 popd
 
