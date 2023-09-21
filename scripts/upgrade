@@ -43,8 +43,8 @@ ynh_script_progression --message="Proceeding to migration..."
 
 pushd $install_dir
     ynh_script_progression --message="Proceeding to migration..."
-    ynh_exec_as $app  php$phpversion api/bin/console doctrine:migration:migrate
-    ynh_exec_as $app  php$phpversion api/bin/console zusam:migration
+    php$phpversion api/bin/console doctrine:migration:migrate
+    php$phpversion api/bin/console zusam:migration
 
     ynh_script_progression --message="Pulling in external libraries with Composer..."
     ynh_install_composer 
