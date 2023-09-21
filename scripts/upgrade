@@ -41,9 +41,9 @@ fi
 
 ynh_script_progression --message="Proceeding to migration..."
 
-/usr/bin/php$phpversion $install_dir/bin/console doctrine:migration:migrate
+/usr/bin/php$phpversion $install_dir/api/bin/console doctrine:migration:migrate
 
-/usr/bin/php$phpversion $install_dir/bin/console zusam:migration
+/usr/bin/php$phpversion $install_dir/api/bin/console zusam:migration
 
 ynh_script_progression --message="Pulling in external libraries with Composer..."
 
