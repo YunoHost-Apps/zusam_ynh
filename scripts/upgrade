@@ -32,7 +32,10 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir"
+	#ynh_setup_source --dest_dir="$install_dir"
+
+    # We try as described in the app's official doc
+    cd $install_dir && curl -Ls https://github.com/zusam/zusam/archive/refs/tags/0.5.4.tar.gz | tar xz --strip 1
 fi
 
 #=================================================
