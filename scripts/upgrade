@@ -35,6 +35,22 @@ then
 	ynh_setup_source --dest_dir="$install_dir"
 fi
 
+#=================================================
+# ACTUAL UPDATE
+#=================================================
+
+ynh_script_progression --message="Proceeding to migration..."
+
+/usr/bin/php$phpversion $install_dir/bin/console doctrine:migration:migrate
+
+/usr/bin/php$phpversion $install_dir/bin/console zusam:migration
+
+ynh_script_progression --message="Pulling in external libraries with Composer..."
+
+ynh_install_composer -c "2.4.2" -w $install_dir/api/
+
+cp $install_dir/app/dist/* $install_dir/public/
+
 chown -R $app:www-data "$install_dir"
 
 #=================================================
