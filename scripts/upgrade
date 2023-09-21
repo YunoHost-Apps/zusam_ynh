@@ -32,10 +32,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	#ynh_setup_source --dest_dir="$install_dir"
-
-    # We try as described in the app's official doc
-    cd $install_dir && curl -Ls https://github.com/zusam/zusam/archive/refs/tags/0.5.4.tar.gz | tar xz --strip 1
+	ynh_setup_source --dest_dir="$install_dir"
 fi
 
 #=================================================
@@ -44,15 +41,15 @@ fi
 
 ynh_script_progression --message="Proceeding to migration..."
 
-/usr/bin/php$phpversion $install_dir/api/bin/console doctrine:migration:migrate
+pushd $install_dir
+    ynh_script_progression --message="Proceeding to migration..."
+    ynh_exec_as $app  php$phpversion bin/console doctrine:migration:migrate
+    ynh_exec_as $app  php$phpversion bin/console zusam:migration
 
-/usr/bin/php$phpversion $install_dir/api/bin/console zusam:migration
-
-ynh_script_progression --message="Pulling in external libraries with Composer..."
-
-ynh_install_composer -c "2.4.2" -w $install_dir/api/
-
-cp $install_dir/app/dist/* $install_dir/public/
+    ynh_script_progression --message="Pulling in external libraries with Composer..."
+    ynh_install_composer 
+  cp app/dist/* public/
+popd
 
 chown -R $app:www-data "$install_dir"
 
