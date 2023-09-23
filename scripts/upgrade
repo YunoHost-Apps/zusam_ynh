@@ -43,6 +43,7 @@ ynh_script_progression --message="Proceeding to migration..."
 
 pushd $install_dir
     ynh_script_progression --message="Proceeding to migration..."
+    rm -rf $install_dir/api/var/cache/
     php$phpversion api/bin/console doctrine:migration:migrate
     php$phpversion api/bin/console zusam:migration
 
