@@ -50,7 +50,7 @@ pushd $install_dir
 
     ynh_script_progression --message="Pulling in external libraries with Composer..."
     ynh_install_composer -c "2.4.2" -w $install_dir/api/
-  cp app/dist/* public/
+  cp -r app/dist/* public/
 popd
 
 chown -R $app:www-data "$install_dir"
