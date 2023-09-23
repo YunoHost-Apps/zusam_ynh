@@ -35,7 +35,7 @@ then
 	ynh_setup_source --dest_dir="$install_dir" --full_replace
     if [ -f $install_dir/api/config/packages/sensio_framework_extra.yaml ]
     then
-        rm -f $install_dir/api/config/packages/sensio_framework_extra.yaml
+        ynh_secure_remove $install_dir/api/config/packages/sensio_framework_extra.yaml
     fi
 fi
 
@@ -47,7 +47,7 @@ ynh_script_progression --message="Proceeding to migration..."
 
 pushd $install_dir
     ynh_script_progression --message="Proceeding to migration..."
-    rm -rf $install_dir/api/var/cache/
+    ynh_secure_remove $install_dir/api/var/cache/
     php$phpversion api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
     php$phpversion api/bin/console zusam:migration
 
