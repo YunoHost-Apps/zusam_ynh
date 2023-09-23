@@ -29,7 +29,7 @@ L'objectif est de disposer d'un outil stable, extensible, léger et convivial po
 - Faible empreinte serveur
 
 
-**Version incluse :** 0.5.4~ynh1
+**Version incluse :** 0.5.4~ynh2
 
 **Démo :** https://demo.zusam.org
 
