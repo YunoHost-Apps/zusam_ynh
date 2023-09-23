@@ -4,3 +4,6 @@ test_format = 1.0
 
     args.first_user = "package_checker"
     args.first_group = "SuperGroup"
+
+    test_upgrade_from.6cea5ff5b8d5984e34ca8b3749e342fa96d3779d.name = "Upgrade from 0.5.3~ynh1"
+    test_upgrade_from.00e87799b98e083dfbee1c1b601e74f05db6a7d9.name = "Upgrade from 0.5.4~ynh1"

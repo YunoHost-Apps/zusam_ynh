@@ -5,7 +5,7 @@ name = "Zusam"
 description.en = "Truly private space for you and your friends"
 description.fr = "Espace entièrement privé pour vous et vos amis"
 
-version = "0.5.4~ynh1"
+version = "0.5.4~ynh2"
 
 maintainers = ["Papa Dragon"]
 
