@@ -32,8 +32,29 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=1
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir"
+	ynh_setup_source --dest_dir="$install_dir" --full_replace
+    if [ -f $install_dir/api/config/packages/sensio_framework_extra.yaml ]
+    then
+        ynh_secure_remove $install_dir/api/config/packages/sensio_framework_extra.yaml
+    fi
 fi
+
+#=================================================
+# ACTUAL UPDATE
+#=================================================
+
+ynh_script_progression --message="Proceeding to migration..."
+
+pushd $install_dir
+    ynh_script_progression --message="Proceeding to migration..."
+    ynh_secure_remove $install_dir/api/var/cache/
+    php$phpversion api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
+    php$phpversion api/bin/console zusam:migration
+
+    ynh_script_progression --message="Pulling in external libraries with Composer..."
+    ynh_install_composer -c "2.4.2" -w $install_dir/api/
+  cp -r app/dist/* public/
+popd
 
 chown -R $app:www-data "$install_dir"
 
