@@ -5,7 +5,7 @@ name = "Zusam"
 description.en = "Truly private space for you and your friends"
 description.fr = "Espace entièrement privé pour vous et vos amis"
 
-version = "0.5.4~ynh2"
+version = "0.5.5~ynh1"
 
 maintainers = ["Papa Dragon"]
 
@@ -62,8 +62,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/zusam/zusam/archive/refs/tags/0.5.4.tar.gz"
-        sha256 = "772c3b218c2ac259ce581a2c19e0d41ac9b42ecb3503ae5e703f4513404e9aef"
+        url = "https://github.com/zusam/zusam/archive/refs/tags/0.5.5.tar.gz"
+        sha256 = "34441f82b6857f74710ba36b4304cade8bda384379a75750003d4616b5f7b9d2"
 
         autoupdate.strategy = "latest_github_release"
 
