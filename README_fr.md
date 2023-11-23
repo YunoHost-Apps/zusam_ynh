@@ -29,7 +29,7 @@ L'objectif est de disposer d'un outil stable, extensible, léger et convivial po
 - Faible empreinte serveur
 
 
-**Version incluse :** 0.5.4~ynh2
+**Version incluse :** 0.5.5~ynh1
 
 **Démo :** https://demo.zusam.org
 
@@ -42,7 +42,7 @@ L'objectif est de disposer d'un outil stable, extensible, léger et convivial po
 * Site officiel de l’app : <https://zusam.org>
 * Documentation officielle de l’admin : <https://github.com/zusam/zusam/tree/master/documentation>
 * Dépôt de code officiel de l’app : <https://github.com/zusam/zusam>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_zusam>
+* YunoHost Store: <https://apps.yunohost.org/app/zusam>
 * Signaler un bug : <https://github.com/YunoHost-Apps/zusam_ynh/issues>
 
 ## Informations pour les développeurs
