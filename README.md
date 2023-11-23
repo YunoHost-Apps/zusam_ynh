@@ -29,7 +29,7 @@ The goal is to make a stable, extensible, lightweight and user-friendly way to s
 - Low server footprint
 
 
-**Shipped version:** 0.5.4~ynh2
+**Shipped version:** 0.5.5~ynh1
 
 **Demo:** https://demo.zusam.org
 
@@ -42,7 +42,7 @@ The goal is to make a stable, extensible, lightweight and user-friendly way to s
 * Official app website: <https://zusam.org>
 * Official admin documentation: <https://github.com/zusam/zusam/tree/master/documentation>
 * Upstream app code repository: <https://github.com/zusam/zusam>
-* YunoHost documentation for this app: <https://yunohost.org/app_zusam>
+* YunoHost Store: <https://apps.yunohost.org/app/zusam>
 * Report a bug: <https://github.com/YunoHost-Apps/zusam_ynh/issues>
 
 ## Developer info
