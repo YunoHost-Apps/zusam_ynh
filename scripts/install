@@ -1,13 +1,9 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
+
+ynh_app_setting_set --key=php_upload_max_filesize --value=2048M
 
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
@@ -15,29 +11,29 @@ source /usr/share/yunohost/helpers
 
 email=$(ynh_user_get_info --username=$first_user --key=mail)
 random_string="$(ynh_string_random --length=48)"
-fpm_footprint="medium"
-fpm_free_footprint=0
-fpm_usage="medium"
+#REMOVEME? Everything about fpm_footprint is removed in helpers2.1... | fpm_footprint="medium"
+#REMOVEME? Everything about fpm_free_footprint is removed in helpers2.1... | fpm_free_footprint=0
+#REMOVEME? Everything about fpm_usage is removed in helpers2.1... | fpm_usage="medium"
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..." --weight=1
+ynh_script_progression "Storing installation settings..."
 
-ynh_app_setting_set --app=$app --key=email --value=$email
-ynh_app_setting_set --app=$app --key=first_user_pass --value=$first_user_pass
-ynh_app_setting_set --app=$app --key=first_group --value=$first_group
-ynh_app_setting_set --app=$app --key=random_string --value=$random_string
-ynh_app_setting_set --app=$app --key=fpm_footprint --value=$fpm_footprint
-ynh_app_setting_set --app=$app --key=fpm_free_footprint --value=$fpm_free_footprint
-ynh_app_setting_set --app=$app --key=fpm_usage --value=$fpm_usage
+ynh_app_setting_set --key=email --value=$email
+ynh_app_setting_set --key=first_user_pass --value=$first_user_pass
+ynh_app_setting_set --key=first_group --value=$first_group
+ynh_app_setting_set --key=random_string --value=$random_string
+#REMOVEME? Everything about fpm_footprint is removed in helpers2.1... | ynh_app_setting_set --key=fpm_footprint --value=$fpm_footprint
+#REMOVEME? Everything about fpm_free_footprint is removed in helpers2.1... | ynh_app_setting_set --key=fpm_free_footprint --value=$fpm_free_footprint
+#REMOVEME? Everything about fpm_usage is removed in helpers2.1... | ynh_app_setting_set --key=fpm_usage --value=$fpm_usage
 
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression "Setting up source files..."
 
 # Download, check integrity, uncompress and patch the source
 ynh_setup_source --dest_dir="$install_dir"
@@ -45,58 +41,55 @@ ynh_setup_source --dest_dir="$install_dir"
 # Let's copy the webapp in the public directory
 cp -R $install_dir/app/dist/* $install_dir/public/
 
-ynh_script_progression --message="Pulling in external libraries with Composer..."
+ynh_script_progression "Pulling in external libraries with Composer..."
 
-ynh_install_composer -c "2.4.2" -w $install_dir/api/
+ynh_composer_install
+ynh_composer_exec install --no-dev  -c "2.4.2" -w $install_dir/api/
 
-chown -R $app:www-data "$install_dir"
-
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
+ynh_script_progression "Adding system configurations related to $app..."
 
 # Create a dedicated PHP-FPM config using conf/extra_php-fpm.conf
-ynh_add_fpm_config
+ynh_config_add_phpfpm
 
 # Create a dedicated NGINX config using the conf/nginx.conf template
-ynh_add_nginx_config
+ynh_config_add_nginx
 
 # Create a dedicated Fail2Ban config
 # We'll see that in later versions
-# ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
+# ynh_config_add_fail2ban --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
 
 #=================================================
 # APP INITIAL CONFIGURATION
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-# ynh_script_progression --message="Adding a configuration file..." --weight=1
+# ynh_script_progression "Adding $app's configuration..."
 
 # We'll take care of language later
-# ynh_add_config --template="../conf/sample.env" --destination="$install_dir/api/.env"
+# ynh_config_add --template="sample.env" --destination="$install_dir/api/.env"
 
-chmod 600 "$install_dir/api/.env"
-chown $app:www-data "$install_dir/api/.env"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 600 "$install_dir/api/.env"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/api/.env"
 
 #=================================================
 # DATABASE
 #=================================================
 
-ynh_script_progression --message="Initialiazing the database..." --weight=1
-/usr/bin/php$phpversion $install_dir/api/bin/console zusam:init $email "$first_group" $first_user_pass
+ynh_script_progression "Initialiazing the database..."
+/usr/bin/php$php_version $install_dir/api/bin/console zusam:init $email "$first_group" $first_user_pass
 
-chown -R $app:www-data $install_dir
-
-#=================================================
-# GENERIC FINALIZATION
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data $install_dir
 #=================================================
 
-ynh_add_config --template="../conf/cronjob" --destination="/etc/cron.d/$app"
-chown root: "/etc/cron.d/$app"
-chmod 644 "/etc/cron.d/$app"
+ynh_config_add --template="cronjob" --destination="/etc/cron.d/$app"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown root: "/etc/cron.d/$app"
+#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression "Installation of $app completed"
