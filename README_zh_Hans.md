@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Zusam
 
-[![集成程度](https://dash.yunohost.org/integration/zusam.svg)](https://dash.yunohost.org/appci/app/zusam) ![工作状态](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/zusam.svg)](https://ci-apps.yunohost.org/ci/apps/zusam/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
 
 [![使用 YunoHost 安装 Zusam](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zusam)
 
@@ -29,7 +29,7 @@ The goal is to make a stable, extensible, lightweight and user-friendly way to s
 - Low server footprint
 
 
-**分发版本：** 0.5.5~ynh1
+**分发版本：** 0.5.6~ynh1
 
 **演示：** <https://demo.zusam.org>
 

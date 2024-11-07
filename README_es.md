@@ -5,7 +5,7 @@ No se debe editar a mano.
 
 # Zusam para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/zusam.svg)](https://dash.yunohost.org/appci/app/zusam) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/zusam.svg)](https://ci-apps.yunohost.org/ci/apps/zusam/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
 
 [![Instalar Zusam con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zusam)
 
@@ -29,7 +29,7 @@ The goal is to make a stable, extensible, lightweight and user-friendly way to s
 - Low server footprint
 
 
-**Versión actual:** 0.5.5~ynh1
+**Versión actual:** 0.5.6~ynh1
 
 **Demo:** <https://demo.zusam.org>
 
@@ -47,7 +47,7 @@ The goal is to make a stable, extensible, lightweight and user-friendly way to s
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/zusam_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/zusam_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
