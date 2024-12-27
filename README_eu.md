@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Zusam YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/zusam.svg)](https://dash.yunohost.org/appci/app/zusam) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/zusam.svg)](https://ci-apps.yunohost.org/ci/apps/zusam/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
 
 [![Instalatu Zusam YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zusam)
 
@@ -29,7 +29,7 @@ The goal is to make a stable, extensible, lightweight and user-friendly way to s
 - Low server footprint
 
 
-**Paketatutako bertsioa:** 0.5.5~ynh1
+**Paketatutako bertsioa:** 0.5.6~ynh1
 
 **Demoa:** <https://demo.zusam.org>
 
