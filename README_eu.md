@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Zusam YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/zusam.svg)](https://ci-apps.yunohost.org/ci/apps/zusam/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/zusam)](https://ci-apps.yunohost.org/ci/apps/zusam/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/zusam)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/zusam)
 
 [![Instalatu Zusam YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zusam)
 

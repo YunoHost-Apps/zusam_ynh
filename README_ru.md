@@ -5,7 +5,9 @@
 
 # Zusam для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/zusam.svg)](https://ci-apps.yunohost.org/ci/apps/zusam/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/zusam)](https://ci-apps.yunohost.org/ci/apps/zusam/)
+![Состояние работы](https://apps.yunohost.org/badge/state/zusam)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/zusam)
 
 [![Установите Zusam с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zusam)
 

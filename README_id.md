@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Zusam untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/zusam.svg)](https://ci-apps.yunohost.org/ci/apps/zusam/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/zusam)](https://ci-apps.yunohost.org/ci/apps/zusam/)
+![Status kerja](https://apps.yunohost.org/badge/state/zusam)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/zusam)
 
 [![Pasang Zusam dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zusam)
 

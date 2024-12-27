@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # Zusam voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/zusam.svg)](https://ci-apps.yunohost.org/ci/apps/zusam/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/zusam.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/zusam.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/zusam)](https://ci-apps.yunohost.org/ci/apps/zusam/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/zusam)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/zusam)
 
 [![Zusam met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=zusam)
 
