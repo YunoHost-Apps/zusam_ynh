@@ -48,8 +48,8 @@ ynh_script_progression --message="Proceeding to migration..."
 pushd $install_dir
     ynh_script_progression --message="Proceeding to migration..."
     ynh_secure_remove $install_dir/api/var/cache/
-    php$phpversion api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
-    php$phpversion api/bin/console zusam:migration
+    ynh_exec_warn_less php$phpversion api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
+    ynh_exec_warn_less php$phpversion api/bin/console zusam:migration
 
     ynh_script_progression --message="Pulling in external libraries with Composer..."
     ynh_install_composer -c "2.4.2" -w $install_dir/api/
