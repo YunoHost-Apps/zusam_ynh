@@ -31,7 +31,7 @@ The goal is to make a stable, extensible, lightweight and user-friendly way to s
 - Low server footprint
 
 
-**Shipped version:** 0.5.6~ynh1
+**Shipped version:** 0.5.6~ynh2
 
 **Demo:** <https://demo.zusam.org>
 
