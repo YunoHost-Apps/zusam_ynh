@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "zusam"
@@ -5,7 +7,7 @@ name = "Zusam"
 description.en = "Truly private space for you and your friends"
 description.fr = "Espace entièrement privé pour vous et vos amis"
 
-version = "0.5.6~ynh1"
+version = "0.5.6~ynh2"
 
 maintainers = ["Papa Dragon"]
 
@@ -20,8 +22,11 @@ code = "https://github.com/zusam/zusam"
 yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = false
+
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
@@ -61,11 +66,11 @@ ram.runtime = "50M"
 
     [resources.sources]
 
-        [resources.sources.main]
-        url = "https://github.com/zusam/zusam/archive/refs/tags/0.5.6.tar.gz"
-        sha256 = "3c7e4dccb6ddf418c4cecef36a803c83cccb7bcbde9c8db0b2fa504840a780c5"
+    [resources.sources.main]
+    url = "https://github.com/zusam/zusam/archive/refs/tags/0.5.6.tar.gz"
+    sha256 = "3c7e4dccb6ddf418c4cecef36a803c83cccb7bcbde9c8db0b2fa504840a780c5"
 
-        autoupdate.strategy = "latest_github_release"
+    autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
 
