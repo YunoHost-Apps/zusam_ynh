@@ -82,9 +82,9 @@ chown $app:www-data "$install_dir/api/.env"
 #=================================================
 # DATABASE
 #=================================================
-
 ynh_script_progression --message="Initialiazing the database..." --weight=1
-/usr/bin/php$phpversion $install_dir/api/bin/console zusam:init $email "$first_group" $first_user_pass
+
+ynh_exec_warn_less php$phpversion $install_dir/api/bin/console zusam:init $email "$first_group" $first_user_pass
 
 chown -R $app:www-data $install_dir
 
