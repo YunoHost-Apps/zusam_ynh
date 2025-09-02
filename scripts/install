@@ -6,7 +6,7 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source _common.sh
+
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -47,7 +47,7 @@ cp -R $install_dir/app/dist/* $install_dir/public/
 
 ynh_script_progression --message="Pulling in external libraries with Composer..."
 
-ynh_install_composer -c "2.4.2" -w $install_dir/api/
+#REMOVEME? ynh_install_composer -c "2.4.2" -w $install_dir/api/
 
 chown -R $app:www-data "$install_dir"
 

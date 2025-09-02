@@ -6,7 +6,7 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source _common.sh
+
 source /usr/share/yunohost/helpers
 
 ### This helper will compare the version of the currently installed app and the version of the upstream package.
@@ -52,7 +52,7 @@ pushd $install_dir
     ynh_exec_warn_less php$phpversion api/bin/console zusam:migration
 
     ynh_script_progression --message="Pulling in external libraries with Composer..."
-    ynh_install_composer -c "2.4.2" -w $install_dir/api/
+    #REMOVEME? ynh_install_composer -c "2.4.2" -w $install_dir/api/
   cp -r app/dist/* public/
 popd
 
