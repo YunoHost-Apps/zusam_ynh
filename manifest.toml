@@ -87,7 +87,7 @@ ram.runtime = "50M"
     [resources.ports]
 
     [resources.apt]
-    packages = "unzip, ffmpeg, php8.1-fpm, php8.1-xml, php8.1-curl, php8.1-mbstring, php8.1-sqlite3, php8.1-imagick, php8.1-intl, curl"
+    packages = "unzip, ffmpeg, php8.3-fpm, php8.3-xml, php8.3-curl, php8.3-mbstring, php8.3-sqlite3, php8.3-imagick, php8.3-intl, curl"
 
     [resources.composer]
     version = "2.4.2"
