@@ -36,7 +36,8 @@ cp -R $install_dir/app/dist/* $install_dir/public/
 
 ynh_script_progression "Pulling in external libraries with Composer..."
 
-composer_workdir="$install_dir/api/"
+composer_workdir="$install_dir/api"
+ynh_composer_install
 ynh_composer_exec install --no-dev
 
 #=================================================
