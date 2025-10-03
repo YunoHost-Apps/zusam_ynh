@@ -48,6 +48,7 @@ pushd $install_dir
     composer_workdir="$install_dir/api"
     ynh_composer_install
     ynh_composer_exec install --no-dev
+    chown -R $app:www-data "$install_dir/api"
     cp -r app/dist/* public/
     chown -R $app:www-data "$install_dir/public"
 popd
