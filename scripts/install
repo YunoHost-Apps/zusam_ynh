@@ -11,9 +11,6 @@ ynh_app_setting_set --key=php_upload_max_filesize --value=2048M
 
 email=$(ynh_user_get_info --username=$first_user --key=mail)
 random_string="$(ynh_string_random --length=48)"
-#REMOVEME? Everything about fpm_footprint is removed in helpers2.1... | fpm_footprint="medium"
-#REMOVEME? Everything about fpm_free_footprint is removed in helpers2.1... | fpm_free_footprint=0
-#REMOVEME? Everything about fpm_usage is removed in helpers2.1... | fpm_usage="medium"
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
@@ -24,9 +21,6 @@ ynh_app_setting_set --key=email --value=$email
 ynh_app_setting_set --key=first_user_pass --value=$first_user_pass
 ynh_app_setting_set --key=first_group --value=$first_group
 ynh_app_setting_set --key=random_string --value=$random_string
-#REMOVEME? Everything about fpm_footprint is removed in helpers2.1... | ynh_app_setting_set --key=fpm_footprint --value=$fpm_footprint
-#REMOVEME? Everything about fpm_free_footprint is removed in helpers2.1... | ynh_app_setting_set --key=fpm_free_footprint --value=$fpm_free_footprint
-#REMOVEME? Everything about fpm_usage is removed in helpers2.1... | ynh_app_setting_set --key=fpm_usage --value=$fpm_usage
 
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
@@ -43,10 +37,8 @@ cp -R $install_dir/app/dist/* $install_dir/public/
 
 ynh_script_progression "Pulling in external libraries with Composer..."
 
-ynh_composer_install
-ynh_composer_exec install --no-dev  -c "2.4.2" -w $install_dir/api/
+ynh_composer_exec install --no-dev -w $install_dir/api/
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data "$install_dir"
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
@@ -67,13 +59,9 @@ ynh_config_add_nginx
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-# ynh_script_progression "Adding $app's configuration..."
+ynh_script_progression "Adding $app's configuration..."
 
-# We'll take care of language later
-# ynh_config_add --template="sample.env" --destination="$install_dir/api/.env"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 600 "$install_dir/api/.env"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:www-data "$install_dir/api/.env"
+ynh_config_add --template="sample.env" --destination="$install_dir/api/.env"
 
 #=================================================
 # DATABASE
@@ -82,12 +70,9 @@ ynh_config_add_nginx
 ynh_script_progression "Initialiazing the database..."
 /usr/bin/php$php_version $install_dir/api/bin/console zusam:init $email "$first_group" $first_user_pass
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:www-data $install_dir
 #=================================================
 
 ynh_config_add --template="cronjob" --destination="/etc/cron.d/$app"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown root: "/etc/cron.d/$app"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 644 "/etc/cron.d/$app"
 
 #=================================================
 # END OF SCRIPT

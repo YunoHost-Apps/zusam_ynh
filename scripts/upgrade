@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source _common.sh
 source /usr/share/yunohost/helpers
 
 ynh_app_setting_set_default --key=php_upload_max_filesize --value=2048M
@@ -26,7 +25,7 @@ then
 	ynh_script_progression "Upgrading source files..."
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --full_replace
+	ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="data"
     if [ -f $install_dir/api/config/packages/sensio_framework_extra.yaml ]
     then
         ynh_safe_rm $install_dir/api/config/packages/sensio_framework_extra.yaml
@@ -46,8 +45,7 @@ pushd $install_dir
     php$php_version api/bin/console zusam:migration
 
     ynh_script_progression "Pulling in external libraries with Composer..."
-    ynh_composer_install
-ynh_composer_exec install --no-dev  -c "2.4.2" -w $install_dir/api/
+    ynh_composer_exec install --no-dev -w $install_dir/api/
   cp -r app/dist/* public/
 popd
 
