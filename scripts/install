@@ -33,6 +33,7 @@ ynh_setup_source --dest_dir="$install_dir"
 
 # Let's copy the webapp in the public directory
 cp -R $install_dir/app/dist/* $install_dir/public/
+chown -R $app:www-data "$install_dir/public"
 
 ynh_script_progression "Pulling in external libraries with Composer..."
 

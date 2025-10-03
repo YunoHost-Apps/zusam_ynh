@@ -49,6 +49,7 @@ pushd $install_dir
     ynh_composer_install
     ynh_composer_exec install --no-dev
     cp -r app/dist/* public/
+    chown -R $app:www-data "$install_dir/public"
 popd
 
 #=================================================
