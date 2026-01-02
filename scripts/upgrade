@@ -28,6 +28,8 @@ pushd $install_dir
     ynh_script_progression "Proceeding to migration..."
     ynh_safe_rm $install_dir/api/var/cache/
     ls -lah $install_dir
+    ls -lah $install_dir/api
+    ls -lah $install_dir/api/bin
     ynh_hide_warnings php$php_version $install_dir/api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
     ynh_hide_warnings php$php_version $install_dir/api/bin/console zusam:migration
 
