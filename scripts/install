@@ -36,7 +36,7 @@ cp -R $install_dir/app/dist/* $install_dir/public/
 chown -R $app:www-data "$install_dir/public"
 
 ynh_script_progression "Pulling in external libraries with Composer..."
-ynh_composer_exec install --no-dev
+ynh_composer_exec install --no-dev -d $install_dir/api
 chown -R $app:www-data "$install_dir/api"
 
 #=================================================
