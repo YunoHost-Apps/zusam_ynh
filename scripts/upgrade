@@ -32,7 +32,6 @@ pushd $install_dir
     ynh_hide_warnings php$php_version $install_dir/api/bin/console zusam:migration
 
     ynh_script_progression "Pulling in external libraries with Composer..."
-    composer_workdir="$install_dir/api"
     ynh_composer_exec install --no-dev
     
     cp -r app/dist/* public/
