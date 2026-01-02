@@ -4,61 +4,47 @@ source /usr/share/yunohost/helpers
 
 ynh_app_setting_set_default --key=php_upload_max_filesize --value=2048M
 
-### This helper will compare the version of the currently installed app and the version of the upstream package.
-### $upgrade_type can have 2 different values
-### - UPGRADE_APP if the upstream app version has changed
-### - UPGRADE_PACKAGE if only the YunoHost package has changed
-### ynh_check_app_version_changed will stop the upgrade if the app is up to date.
-### UPGRADE_APP should be used to upgrade the core app only if there's an upgrade to do.
-
-#=================================================
-
 #=================================================
 # "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
-if ynh_app_upstream_version_changed
-then
-	ynh_script_progression "Upgrading source files..."
+ynh_script_progression "Upgrading source files..."
 
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="data"
-    if [ -f $install_dir/api/config/packages/sensio_framework_extra.yaml ]
-    then
-        ynh_safe_rm $install_dir/api/config/packages/sensio_framework_extra.yaml
-    fi
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="data"
+
+if [ -f $install_dir/api/config/packages/sensio_framework_extra.yaml ]; then
+      ynh_safe_rm $install_dir/api/config/packages/sensio_framework_extra.yaml
 fi
+
 
 #=================================================
 # ACTUAL UPDATE
 #=================================================
 
-ynh_script_progression "Proceeding to migration..."
-
 pushd $install_dir
     ynh_script_progression "Proceeding to migration..."
     ynh_safe_rm $install_dir/api/var/cache/
-    php$php_version api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
-    php$php_version api/bin/console zusam:migration
+    php$php_version $install_dir/api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
+    php$php_version $install_dir/api/bin/console zusam:migration
 
     ynh_script_progression "Pulling in external libraries with Composer..."
     composer_workdir="$install_dir/api"
     ynh_composer_install
     ynh_composer_exec install --no-dev
-    chown -R $app:www-data "$install_dir/api"
+    
     cp -r app/dist/* public/
     chown -R $app:www-data "$install_dir/public"
+    chown -R $app:www-data "$install_dir/api"
+
 popd
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
-
-# This should be a literal copypasta of what happened in the install's "System configuration" section
 
 ynh_config_add_phpfpm
 

@@ -71,7 +71,7 @@ ynh_config_add --template="sample.env" --destination="$install_dir/api/.env"
 #=================================================
 
 ynh_script_progression "Initialiazing the database..."
-/usr/bin/php$php_version $install_dir/api/bin/console zusam:init $email "$first_group" $first_user_pass
+ynh_hide_warnings php$php_version $install_dir/api/bin/console zusam:init $email "$first_group" $first_user_pass
 
 #=================================================
 
