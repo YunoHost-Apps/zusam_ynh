@@ -25,7 +25,6 @@ architectures = "all"
 multi_instance = true
 
 ldap = false
-
 sso = false
 
 disk = "50M"
@@ -90,4 +89,4 @@ ram.runtime = "50M"
     packages = "unzip, ffmpeg, php8.3-fpm, php8.3-xml, php8.3-curl, php8.3-mbstring, php8.3-sqlite3, php8.3-imagick, php8.3-intl, curl"
 
     [resources.composer]
-    version = "2.4.2"
+    version = "2.9.3"
