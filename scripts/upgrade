@@ -1,80 +1,53 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
-source _common.sh
 source /usr/share/yunohost/helpers
 
-### This helper will compare the version of the currently installed app and the version of the upstream package.
-### $upgrade_type can have 2 different values
-### - UPGRADE_APP if the upstream app version has changed
-### - UPGRADE_PACKAGE if only the YunoHost package has changed
-### ynh_check_app_version_changed will stop the upgrade if the app is up to date.
-### UPGRADE_APP should be used to upgrade the core app only if there's an upgrade to do.
-upgrade_type=$(ynh_check_app_version_changed)
+ynh_app_setting_set_default --key=php_upload_max_filesize --value=2048M
 
-#=================================================
-# STANDARD UPGRADE STEPS
-#=================================================
-
-#=================================================
-# "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
+ynh_script_progression "Upgrading source files..."
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-	ynh_script_progression --message="Upgrading source files..." --weight=1
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="data"
 
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --full_replace
-    if [ -f $install_dir/api/config/packages/sensio_framework_extra.yaml ]
-    then
-        ynh_secure_remove $install_dir/api/config/packages/sensio_framework_extra.yaml
-    fi
+if [ -f $install_dir/api/config/packages/sensio_framework_extra.yaml ]; then
+      ynh_safe_rm $install_dir/api/config/packages/sensio_framework_extra.yaml
 fi
 
 #=================================================
 # ACTUAL UPDATE
 #=================================================
 
-ynh_script_progression --message="Proceeding to migration..."
-
 pushd $install_dir
-    ynh_script_progression --message="Proceeding to migration..."
-    ynh_secure_remove $install_dir/api/var/cache/
-    ynh_exec_warn_less php$phpversion api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
-    ynh_exec_warn_less php$phpversion api/bin/console zusam:migration
+    ynh_script_progression "Proceeding to migration..."
+    ynh_safe_rm $install_dir/api/var/cache/
+    ls -lah $install_dir
+    ls -lah $install_dir/api
+    ls -lah $install_dir/api/bin
+    ynh_hide_warnings php$php_version $install_dir/api/bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
+    ynh_hide_warnings php$php_version $install_dir/api/bin/console zusam:migration
 
-    ynh_script_progression --message="Pulling in external libraries with Composer..."
-    ynh_install_composer -c "2.4.2" -w $install_dir/api/
-  cp -r app/dist/* public/
+    ynh_script_progression "Pulling in external libraries with Composer..."
+    ynh_composer_exec install --no-dev -d $install_dir/api
+    
+    cp -r app/dist/* public/
+    chown -R $app:www-data "$install_dir/public"
+    chown -R $app:www-data "$install_dir/api"
 popd
-
-chown -R $app:www-data "$install_dir"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+ynh_script_progression "Upgrading system configurations related to $app..."
 
-# This should be a literal copypasta of what happened in the install's "System configuration" section
+ynh_config_add_phpfpm
 
-ynh_add_fpm_config
-
-ynh_add_nginx_config
-
-# ynh_use_logrotate --non-append
-
-# ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
+ynh_config_add_nginx
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
